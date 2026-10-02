@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Invitasjon – Pawtur</title>
+<meta name="description" content="Du er invitert til en flokk på Pawtur.">
+<link rel="icon" href="../icon.jpg">
+<style>
+  :root {
+    --bg: #F7F1E6;
+    --card: #FFFCF6;
+    --sand: #E9DFC9;
+    --ink: #1F2A26;
+    --muted: #55615C;
+    --green: #2F5D50;
+    --orange: #E8833A;
+    --line: #E2D7BF;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121A16;
+      --card: #1C2622;
+      --sand: #232E29;
+      --ink: #EEE7DA;
+      --muted: #A9B3AE;
+      --green: #7FB8A3;
+      --orange: #F0975A;
+      --line: #2C3833;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 17px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  main { max-width: 720px; margin: 0 auto; padding: 40px 16px 64px; }
+  header { display: flex; align-items: center; gap: 16px; margin-bottom: 8px; }
+  header img { width: 64px; height: 64px; border-radius: 15px; flex: none; }
+  h1 { font-size: 30px; line-height: 1.15; margin: 0; }
+  .lang { color: var(--muted); font-size: 15px; margin: 0 0 32px; }
+  .lang a { color: var(--green); }
+  h2 { font-size: 21px; margin: 36px 0 10px; }
+  p, li { margin: 0 0 12px; }
+  a { color: var(--green); }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 4px 18px;
+    margin: 12px 0 20px;
+  }
+  .row { padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .row:last-child { border-bottom: 0; }
+  .row strong { display: block; }
+  .row span { color: var(--muted); font-size: 15px; }
+  .promise {
+    background: var(--sand);
+    border-radius: 18px;
+    padding: 16px 18px;
+    margin: 20px 0;
+  }
+  .promise p { margin: 0; }
+  details {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 0 18px;
+    margin: 0 0 10px;
+  }
+  summary { cursor: pointer; font-weight: 600; padding: 14px 0; list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; float: right; color: var(--muted); font-weight: 400; }
+  details[open] summary::after { content: "–"; }
+  details p:last-child { padding-bottom: 6px; }
+  .code {
+    font: 700 34px/1.2 ui-monospace, "SF Mono", Menlo, monospace;
+    letter-spacing: 2px;
+    text-align: center;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 18px;
+    margin: 20px 0 10px;
+  }
+  .button {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font: 600 17px/1.2 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    padding: 15px 18px;
+    border-radius: 999px;
+    border: 0;
+    margin: 10px 0;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .primary { background: var(--green); color: var(--bg); }
+  .secondary { background: var(--sand); color: var(--green); }
+  ol { padding-left: 22px; }
+  .note { color: var(--muted); font-size: 15px; text-align: center; min-height: 1.4em; }
+  [hidden] { display: none !important; }
+  hr { border: 0; border-top: 1px solid var(--line); margin: 56px 0 8px; }
+  footer { color: var(--muted); font-size: 14px; margin-top: 40px; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <img src="../icon.jpg" alt="">
+    <h1 data-nb="Du er invitert til en flokk" data-en="You're invited to a pack">Du er invitert til en flokk</h1>
+  </header>
+
+  <div id="invite">
+    <p data-nb="Noen i familien vil at du skal være med og gå tur med hunden i Pawtur. Dette er koden din:" data-en="Someone in your family wants you to share the dog walks in Pawtur. This is your code:">Noen i familien vil at du skal være med og gå tur med hunden i Pawtur. Dette er koden din:</p>
+    <div class="code" id="code"></div>
+    <button class="button secondary" id="copy" type="button" data-nb="Kopier koden" data-en="Copy the code">Kopier koden</button>
+    <p class="note" id="copied" aria-live="polite"></p>
+
+    <h2 data-nb="Slik blir du med" data-en="How to join">Slik blir du med</h2>
+    <ol>
+      <li data-nb="Last ned Pawtur. Koden kopieres når du trykker." data-en="Get Pawtur. The code is copied when you tap.">Last ned Pawtur. Koden kopieres når du trykker.</li>
+      <li data-nb="Åpne appen og logg inn med Apple." data-en="Open the app and sign in with Apple.">Åpne appen og logg inn med Apple.</li>
+      <li data-nb="Trykk «Jeg har en invitasjon», og så «Lim inn»." data-en="Tap “I have an invite”, then “Paste”.">Trykk «Jeg har en invitasjon», og så «Lim inn».</li>
+    </ol>
+    <a class="button primary" id="download" href="#" data-nb="Last ned Pawtur" data-en="Get Pawtur">Last ned Pawtur</a>
+    <p class="note" id="testing" hidden data-nb="Appen er i testing ennå. Be den som inviterte deg om lenken til TestFlight." data-en="The app is still being tested. Ask the person who invited you for the TestFlight link.">Appen er i testing ennå. Be den som inviterte deg om lenken til TestFlight.</p>
+    <a class="button secondary" id="open" href="#" data-nb="Jeg har appen – åpne invitasjonen" data-en="I have the app – open the invite">Jeg har appen – åpne invitasjonen</a>
+    <p class="note" data-nb="Koden virker for én person i 7 dager." data-en="The code works for one person for 7 days.">Koden virker for én person i 7 dager.</p>
+  </div>
+
+  <div id="missing" hidden>
+    <p data-nb="Denne lenken mangler koden. Be den som inviterte deg om å dele invitasjonen på nytt." data-en="This link is missing the code. Ask the person who invited you to share the invite again.">Denne lenken mangler koden. Be den som inviterte deg om å dele invitasjonen på nytt.</p>
+  </div>
+
+  <footer><a href="../support/" data-nb="Hjelp" data-en="Help">Hjelp</a> · <a href="../personvern/" data-nb="Personvern" data-en="Privacy">Personvern</a></footer>
+</main>
+<script>
+  // Where to get the app. The TestFlight public link while testing, the App
+  // Store later. Empty shows a note to ask for the link instead.
+  const DOWNLOAD_URL = "https://testflight.apple.com/join/QMGK72g6";
+
+  const lang = /^(nb|no|nn)\b/i.test(navigator.language || "") ? "nb" : "en";
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-" + lang + "]").forEach(el => { el.textContent = el.dataset[lang]; });
+  if (lang === "en") document.title = "Invite – Pawtur";
+
+  // The code is in the fragment (#KAOS-1234), so it never reaches the server.
+  const raw = decodeURIComponent(location.hash.slice(1)).trim().toUpperCase();
+  const code = /^[A-Z]{1,4}-[0-9]{4}$/.test(raw) ? raw : null;
+
+  if (!code) {
+    document.getElementById("invite").hidden = true;
+    document.getElementById("missing").hidden = false;
+  } else {
+    document.getElementById("code").textContent = code;
+    document.getElementById("open").href = "leashboard://join/" + code;
+
+    const copied = document.getElementById("copied");
+    async function copy() {
+      try {
+        await navigator.clipboard.writeText(code);
+        copied.textContent = lang === "nb" ? "Koden er kopiert." : "The code is copied.";
+      } catch (e) {
+        copied.textContent = "";
+      }
+    }
+    document.getElementById("copy").addEventListener("click", copy);
+
+    const download = document.getElementById("download");
+    if (DOWNLOAD_URL) {
+      download.href = DOWNLOAD_URL;
+      download.addEventListener("click", async (event) => {
+        event.preventDefault();
+        await copy();
+        location.href = DOWNLOAD_URL;
+      });
+    } else {
+      download.hidden = true;
+      document.getElementById("testing").hidden = false;
+    }
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hjelp – Pawtur</title>
+<meta name="description" content="Hjelp og kontakt for Pawtur, appen som fordeler hundeturene i familien.">
+<link rel="icon" href="../icon.jpg">
+<style>
+  :root {
+    --bg: #F7F1E6;
+    --card: #FFFCF6;
+    --sand: #E9DFC9;
+    --ink: #1F2A26;
+    --muted: #55615C;
+    --green: #2F5D50;
+    --orange: #E8833A;
+    --line: #E2D7BF;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121A16;
+      --card: #1C2622;
+      --sand: #232E29;
+      --ink: #EEE7DA;
+      --muted: #A9B3AE;
+      --green: #7FB8A3;
+      --orange: #F0975A;
+      --line: #2C3833;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 17px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  main { max-width: 720px; margin: 0 auto; padding: 40px 16px 64px; }
+  header { display: flex; align-items: center; gap: 16px; margin-bottom: 8px; }
+  header img { width: 64px; height: 64px; border-radius: 15px; flex: none; }
+  h1 { font-size: 30px; line-height: 1.15; margin: 0; }
+  .lang { color: var(--muted); font-size: 15px; margin: 0 0 32px; }
+  .lang a { color: var(--green); }
+  h2 { font-size: 21px; margin: 36px 0 10px; }
+  p, li { margin: 0 0 12px; }
+  a { color: var(--green); }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 4px 18px;
+    margin: 12px 0 20px;
+  }
+  .row { padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .row:last-child { border-bottom: 0; }
+  .row strong { display: block; }
+  .row span { color: var(--muted); font-size: 15px; }
+  .promise {
+    background: var(--sand);
+    border-radius: 18px;
+    padding: 16px 18px;
+    margin: 20px 0;
+  }
+  .promise p { margin: 0; }
+  details {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 0 18px;
+    margin: 0 0 10px;
+  }
+  summary { cursor: pointer; font-weight: 600; padding: 14px 0; list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; float: right; color: var(--muted); font-weight: 400; }
+  details[open] summary::after { content: "–"; }
+  details p:last-child { padding-bottom: 6px; }
+  hr { border: 0; border-top: 1px solid var(--line); margin: 56px 0 8px; }
+  footer { color: var(--muted); font-size: 14px; margin-top: 40px; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <img src="../icon.jpg" alt="">
+    <h1>Hjelp med Pawtur</h1>
+  </header>
+  <p class="lang">Sist oppdatert 28. september 2026 · <a href="#english">English below</a></p>
+
+  <p>Pawtur fordeler hundeturene i familien med en turnus, viser hvem som faktisk gikk, og gjør det litt gøyere med poeng og badges.</p>
+
+  <div class="promise">
+    <p><strong>Trenger du hjelp?</strong> Send en e-post til <a href="mailto:eiriklie@hotmail.com?subject=Pawtur">eiriklie@hotmail.com</a>. Skriv gjerne hva du prøvde å gjøre, og hvilken iPhone og iOS-versjon du har.</p>
+  </div>
+
+  <h2>Vanlige spørsmål</h2>
+  <details>
+    <summary>Hvordan kommer familien i gang?</summary>
+    <p>Én lager flokken med hunden i appen. Under <strong>Flokken</strong> kan du invitere de andre med en kode som KAOS-1234. Koden virker for én person i 7 dager. Barn under 13 år og andre uten telefon legges inn som profil uten telefon.</p>
+  </details>
+  <details>
+    <summary>Hvordan setter vi opp turnusen?</summary>
+    <p>Under <strong>Flokken → Turnus</strong> velger dere tidene for turene (for eksempel morgen, ettermiddag og kveld) og hvem som har hvilken dag. Turnusen kan gå hver uke eller annenhver uke. Vil dere bare logge turer uten turnus, velg <strong>Bare logging</strong>.</p>
+  </details>
+  <details>
+    <summary>Hvordan registrerer jeg en tur?</summary>
+    <p>Trykk <strong>Start tur</strong> på Hjem. Appen tar opp ruta med GPS, også med låst skjerm, og henter været. Turen lagres på telefonen underveis, så den overlever at appen lukkes eller at du mister nettet. De andre ser at du er ute.</p>
+  </details>
+  <details>
+    <summary>Hvorfor ser ruta eller distansen litt annerledes ut enn det jeg gikk?</summary>
+    <p>GPS i telefonen bommer av og til med noen titalls meter, særlig mellom høye hus, under trær og når du står stille. Appen rydder derfor i ruta: den lagrer ingen punkter mens du står i ro, hopper over punkter med dårlig GPS, og fjerner enkeltpunkter der ruta hopper rett ut og rett tilbake. Distansen regnes fra den ryddede ruta når turen avsluttes, så den kan bli litt kortere enn det som stod underveis.</p>
+    <p>En GPS-tur må komme minst 200 meter fra hjemmet til flokken for å telle med en gang. Ellers må en annen i flokken godkjenne den, eller den godkjennes av seg selv etter 3 timer. Det samme gjelder hvis det var for lite GPS til å se ruta.</p>
+  </details>
+  <details>
+    <summary>Hva skjer på en lang tur, eller hvis jeg glemmer å trykke Stopp?</summary>
+    <p>Har flokken satt hjemmet, merker appen når dere kommer hjem fra en tur. Etter 10 minutter hjemme spør den om turen skal avsluttes da dere kom hjem. Svarer ingen, avsluttes den der etter en halvtime. Går dere ut igjen, glemmer appen det.</p>
+    <p>En tur kan vare i opptil 6 timer. Etter 2 timer, og så hver time, spør appen <strong>Er dere fortsatt ute på tur?</strong>, og du svarer med <strong>Fortsett turen</strong> i varselet eller på skjermen. Har flokken satt hjemmet, og telefonen beveger seg borte fra det, svarer appen selv, så en lang tur blir ikke avbrutt. Svarer ingen innen 15 minutter, lagres turen som avsluttet da appen spurte. Da blir en glemt tur høyst 2 timer.</p>
+  </details>
+  <details>
+    <summary>Vi går sammen. Hvem får turen?</summary>
+    <p>Alle som var med. Velg de andre under <strong>Går sammen med</strong> når du starter turen, eller trykk <strong>Bli med på turen</strong> på Hjem når noen andre allerede er ute. Turen teller i statistikken, poengene og badgene til alle som var med, mens flokken teller den én gang. Det holder at én tar opp turen med GPS.</p>
+  </details>
+  <details>
+    <summary>Hvordan legger jeg til en widget?</summary>
+    <p>Hold fingeren på et tomt sted på Hjem-skjermen til appene rister, trykk <strong>Rediger → Legg til widget</strong>, og søk etter Pawtur. Widgeten viser når hunden sist var ute, hvem som har neste tur og hvem som er ute nå. På låseskjermen: hold fingeren på låseskjermen, trykk <strong>Tilpass → Låseskjerm</strong> og feltet under klokken.</p>
+  </details>
+  <details>
+    <summary>Kan jeg starte en tur uten å åpne appen først?</summary>
+    <p>Ja. Legg <strong>Start tur</strong> i Kontrollsenter (sveip ned fra øverste høyre hjørne, hold fingeren på et tomt sted og trykk <strong>Legg til en kontroll</strong>), nederst på låseskjermen, eller på Handlingsknappen under <strong>Innstillinger → Handlingsknapp → Snarvei</strong>. Du kan også si «Start tur i Pawtur» til Siri. Turen starter med deg og alle hundene.</p>
+  </details>
+  <details>
+    <summary>Hva er det som vises på låseskjermen når noen går tur?</summary>
+    <p>Når noen i flokken starter en tur, viser låseskjermen og Dynamic Island hvem som er ute og hvor lenge, til turen er over. Du kan slå det av under <strong>Min profil → Vis når andre er ute</strong>.</p>
+  </details>
+  <details>
+    <summary>Kan barna bruke appen?</summary>
+    <p>Pawtur er for 13 år og eldre. Yngre barn er med som profil uten telefon, som en forelder legger inn under <strong>Flokken</strong>. De får plass i turnusen, poeng og badges. Når barnet går tur, starter en forelder turen på sin telefon og velger barnet under <strong>Hvem går?</strong>. Går barnet uten telefonen din, slår du av <strong>Ta med denne telefonen</strong>. Da tas bare tiden opp, og du trykker Stopp når barnet er tilbake. Har ingen startet turen, kan den føres inn etterpå under <strong>Turer</strong>.</p>
+  </details>
+  <details>
+    <summary>Jeg glemte å starte turen. Hva gjør jeg?</summary>
+    <p>Åpne <strong>Turer</strong> og trykk <strong>+</strong> for å føre inn turen i ettertid. En tur uten GPS må godkjennes av en annen i flokken, og godkjennes av seg selv etter 3 timer. Er du alene i flokken, godkjennes den med en gang.</p>
+  </details>
+  <details>
+    <summary>Når får jeg påminnelser?</summary>
+    <p>Du får en påminnelse 30 minutter før din tur går ut, hvis ingen har gått ennå. Er noen ute med hunden, sendes ingen påminnelse. Tar noen andre turen din, får du beskjed.</p>
+  </details>
+  <details>
+    <summary>Varslene kommer ikke. Hva sjekker jeg?</summary>
+    <p>Sjekk at varsler er slått på for Pawtur i iOS-innstillingene, og under <strong>Min profil</strong> i appen (avataren oppe til høyre på Hjem). Der velger du også bjeffelyd for liten, mellomstor eller stor hund, eller vanlig lyd.</p>
+  </details>
+  <details>
+    <summary>Hvordan regnes poengene?</summary>
+    <p>Hver tur gir 10 poeng, pluss ekstra for lange turer, regn eller snø, kulde, varme eller sterk vind, tidlig morgen eller sen kveld, og for å ta en tur for en annen. Poengene og antall turer vises på <strong>LeashBoard</strong>.</p>
+  </details>
+  <details>
+    <summary>Hvordan fjerner jeg noen fra flokken?</summary>
+    <p>Under <strong>Flokken</strong>, trykk på medlemmet og velg <strong>Fjern fra flokken</strong>. Turene de har gått, blir stående som tidligere medlem, så statistikken ikke endres.</p>
+  </details>
+  <details>
+    <summary>Hvordan sletter jeg kontoen min?</summary>
+    <p>Trykk på avataren din oppe til høyre på Hjem, og velg <strong>Slett kontoen min</strong>. Les mer i <a href="../personvern/">personvernerklæringen</a>.</p>
+  </details>
+  <details>
+    <summary>Kan jeg bytte språk?</summary>
+    <p>Appen følger språket på telefonen. Du kan velge språk for Pawtur alene i iOS-innstillingene under <strong>Pawtur → Språk</strong>. Appen finnes på norsk og engelsk.</p>
+  </details>
+
+  <h2>Personvern</h2>
+  <p>Ingen reklame og ingen sporing. Les hva appen lagrer i <a href="../personvern/">personvernerklæringen</a>.</p>
+
+  <hr id="english">
+
+  <h1>Pawtur help</h1>
+  <p class="lang">Last updated 28 September 2026</p>
+
+  <p>Pawtur shares out the family's dog walks with a schedule, shows who actually walked, and makes it a bit more fun with points and badges.</p>
+
+  <div class="promise">
+    <p><strong>Need help?</strong> Email <a href="mailto:eiriklie@hotmail.com?subject=Pawtur">eiriklie@hotmail.com</a>. It helps to say what you were trying to do, and which iPhone and iOS version you have.</p>
+  </div>
+
+  <h2>Common questions</h2>
+  <details>
+    <summary>How does the family get started?</summary>
+    <p>One person creates the pack with the dog in the app. Under <strong>Pack</strong> you can invite the others with a code like KAOS-1234. The code works for one person for 7 days. Children under 13 and others without a phone are added as a profile without a phone.</p>
+  </details>
+  <details>
+    <summary>How do we set up the schedule?</summary>
+    <p>Under <strong>Pack → Schedule</strong> you choose the times for walks (for example morning, afternoon and evening) and who has which day. The schedule can repeat every week or every other week. To just log walks without a schedule, choose <strong>Log only</strong>.</p>
+  </details>
+  <details>
+    <summary>How do I record a walk?</summary>
+    <p>Tap <strong>Start a walk</strong> on Home. The app records the route with GPS, also with the screen locked, and gets the weather. The walk is saved on the phone as you go, so it survives the app closing or losing the connection. The others can see that you are out.</p>
+  </details>
+  <details>
+    <summary>Why do the route or distance look a little different from what I walked?</summary>
+    <p>The phone's GPS is sometimes off by a few dozen meters, especially between tall buildings, under trees and when you stand still. So the app tidies the route: it saves no points while you stand still, skips points with poor GPS, and removes single points where the route jumps straight out and straight back. The distance is worked out from the tidied route when the walk ends, so it can be a little shorter than what you saw during the walk.</p>
+    <p>A GPS walk must get at least 200 meters from the pack's home to count right away. Otherwise someone else in the pack approves it, or it is approved automatically after 3 hours. The same goes when there was too little GPS to see the route.</p>
+  </details>
+  <details>
+    <summary>What happens on a long walk, or if I forget to tap Stop?</summary>
+    <p>When the pack has set its home, the app notices when you come home from a walk. After 10 minutes at home it asks whether to end the walk at the time you came home. If nobody answers, it ends there after half an hour. If you head out again, the app forgets it.</p>
+    <p>A walk can last up to 6 hours. After 2 hours, and then every hour, the app asks <strong>Are you still out on the walk?</strong>, and you answer with <strong>Keep going</strong> in the notification or on the screen. When the pack has set its home and the phone is moving away from it, the app answers by itself, so a long walk is not cut short. If nobody answers within 15 minutes, the walk is saved as ending when the app asked. That way a forgotten walk lasts 2 hours at most.</p>
+  </details>
+  <details>
+    <summary>We walk together. Who gets the walk?</summary>
+    <p>Everyone who came along. Pick the others under <strong>Walking together with</strong> when you start the walk, or tap <strong>Join the walk</strong> on Home when someone else is already out. The walk counts in everyone's statistics, points and badges, while the pack counts it once. One of you recording it with GPS is enough.</p>
+  </details>
+  <details>
+    <summary>How do I add a widget?</summary>
+    <p>Touch and hold an empty spot on the Home Screen until the apps jiggle, tap <strong>Edit → Add Widget</strong>, and search for Pawtur. The widget shows when the dog was last out, whose turn is next and who is out right now. On the Lock Screen: touch and hold the Lock Screen, tap <strong>Customize → Lock Screen</strong> and the field under the clock.</p>
+  </details>
+  <details>
+    <summary>Can I start a walk without opening the app first?</summary>
+    <p>Yes. Put <strong>Start a walk</strong> in Control Center (swipe down from the top right corner, touch and hold an empty spot and tap <strong>Add a Control</strong>), at the bottom of the Lock Screen, or on the Action button under <strong>Settings → Action Button → Shortcut</strong>. You can also say “Start a walk in Pawtur” to Siri. The walk starts with you and all the dogs.</p>
+  </details>
+  <details>
+    <summary>What shows on the Lock Screen when someone is out?</summary>
+    <p>When someone in the pack starts a walk, your Lock Screen and the Dynamic Island show who is out and for how long, until the walk is over. You can turn it off under <strong>My profile → Show when others are out</strong>.</p>
+  </details>
+  <details>
+    <summary>Can children use the app?</summary>
+    <p>Pawtur is for people aged 13 and over. Younger children take part as a profile without a phone, which a parent adds under <strong>Pack</strong>. They get a place in the schedule, points and badges. When the child walks the dog, a parent starts the walk on their phone and picks the child under <strong>Who is walking?</strong>. If the child walks without your phone, turn off <strong>Take this phone along</strong>. Then only the time is recorded, and you tap Stop when the child is back. If nobody started it, the walk can be logged afterwards under <strong>Walks</strong>.</p>
+  </details>
+  <details>
+    <summary>I forgot to start the walk. What do I do?</summary>
+    <p>Open <strong>Walks</strong> and tap <strong>+</strong> to log the walk afterwards. A walk without GPS must be approved by someone else in the pack, and is approved automatically after 3 hours. If you are alone in the pack, it is approved right away.</p>
+  </details>
+  <details>
+    <summary>When do I get reminders?</summary>
+    <p>You get a reminder 30 minutes before your walk runs out, if nobody has walked yet. If someone is out with the dog, no reminder is sent. If someone else takes your walk, you are told.</p>
+  </details>
+  <details>
+    <summary>Notifications don't arrive. What should I check?</summary>
+    <p>Check that notifications are on for Pawtur in the iOS Settings app, and under <strong>My profile</strong> in the app (your avatar at the top right of Home). That is also where you choose a bark for a small, medium or large dog, or the normal sound.</p>
+  </details>
+  <details>
+    <summary>How are points counted?</summary>
+    <p>Every walk gives 10 points, plus extra for long walks, rain or snow, cold, heat or strong wind, early mornings or late evenings, and for taking a walk for someone else. Points and walks are shown on <strong>LeashBoard</strong>.</p>
+  </details>
+  <details>
+    <summary>How do I remove someone from the pack?</summary>
+    <p>Under <strong>Pack</strong>, tap the member and choose <strong>Remove from the pack</strong>. Their walks stay as a former member, so the statistics do not change.</p>
+  </details>
+  <details>
+    <summary>How do I delete my account?</summary>
+    <p>Tap your avatar at the top right of Home, and choose <strong>Delete my account</strong>. Read more in the <a href="../personvern/#english">privacy policy</a>.</p>
+  </details>
+  <details>
+    <summary>Can I change the language?</summary>
+    <p>The app follows the phone's language. You can choose a language for Pawtur alone in the iOS Settings app under <strong>Pawtur → Language</strong>. The app is available in English and Norwegian.</p>
+  </details>
+
+  <h2>Privacy</h2>
+  <p>No ads and no tracking. See what the app stores in the <a href="../personvern/#english">privacy policy</a>.</p>
+
+  <footer>Pawtur · Laget for Kaos og flokken hans</footer>
+</main>
+</body>
+</html>

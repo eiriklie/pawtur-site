@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Personvern – Pawtur</title>
+<meta name="description" content="Hva Pawtur lagrer, hvorfor, og hvordan du sletter kontoen din.">
+<link rel="icon" href="../icon.jpg">
+<style>
+  :root {
+    --bg: #F7F1E6;
+    --card: #FFFCF6;
+    --sand: #E9DFC9;
+    --ink: #1F2A26;
+    --muted: #55615C;
+    --green: #2F5D50;
+    --orange: #E8833A;
+    --line: #E2D7BF;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121A16;
+      --card: #1C2622;
+      --sand: #232E29;
+      --ink: #EEE7DA;
+      --muted: #A9B3AE;
+      --green: #7FB8A3;
+      --orange: #F0975A;
+      --line: #2C3833;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 17px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  main { max-width: 720px; margin: 0 auto; padding: 40px 16px 64px; }
+  header { display: flex; align-items: center; gap: 16px; margin-bottom: 8px; }
+  header img { width: 64px; height: 64px; border-radius: 15px; flex: none; }
+  h1 { font-size: 30px; line-height: 1.15; margin: 0; }
+  .lang { color: var(--muted); font-size: 15px; margin: 0 0 32px; }
+  .lang a { color: var(--green); }
+  h2 { font-size: 21px; margin: 36px 0 10px; }
+  p, li { margin: 0 0 12px; }
+  a { color: var(--green); }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 4px 18px;
+    margin: 12px 0 20px;
+  }
+  .row { padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .row:last-child { border-bottom: 0; }
+  .row strong { display: block; }
+  .row span { color: var(--muted); font-size: 15px; }
+  .promise {
+    background: var(--sand);
+    border-radius: 18px;
+    padding: 16px 18px;
+    margin: 20px 0;
+  }
+  .promise p { margin: 0; }
+  hr { border: 0; border-top: 1px solid var(--line); margin: 56px 0 8px; }
+  footer { color: var(--muted); font-size: 14px; margin-top: 40px; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <img src="../icon.jpg" alt="">
+    <h1>Personvern i Pawtur</h1>
+  </header>
+  <p class="lang">Sist oppdatert 27. september 2026 · <a href="#english">English below</a></p>
+
+  <p>Pawtur er en app for familier som deler på hundeturene. Den lagrer bare det som trengs for at flokken din skal se hvem som går tur, når og hvor.</p>
+
+  <div class="promise">
+    <p><strong>Kort fortalt:</strong> Ingen reklame, ingen sporing og ingen analyse fra tredjeparter. Dataene selges aldri. Bare de i din egen flokk ser turene og navnene, og appen tar ikke imot bilder.</p>
+  </div>
+
+  <h2>Hva appen lagrer</h2>
+  <div class="card">
+    <div class="row"><strong>Navn og farge</strong><span>Vises for flokken på turer og i turnusen.</span></div>
+    <div class="row"><strong>E-post fra Logg inn med Apple</strong><span>Kreves for innloggingen, og er ofte en skjult adresse fra Apple. Vises aldri for flokken.</span></div>
+    <div class="row"><strong>GPS-rute for hver tur</strong><span>Vises på kart for flokken, og brukes til å sjekke at turen gikk hjemmefra. Posisjon hentes bare mens du går tur.</span></div>
+    <div class="row"><strong>Flokkens hjemposisjon</strong><span>Brukes til å sjekke at turer kommer minst 200 meter hjemmefra. Avrundet til omtrent 10 meter.</span></div>
+    <div class="row"><strong>Vær ved turstart</strong><span>Temperatur og værtype, hentet fra Apple Weather.</span></div>
+    <div class="row"><strong>Turer, turnus og godkjenninger</strong><span>Det flokken registrerer i appen.</span></div>
+    <div class="row"><strong>Varseltoken</strong><span>En kode fra Apple som gjør at appen kan sende påminnelser. Slettes når du logger ut.</span></div>
+  </div>
+
+  <h2>Hvor dataene ligger</h2>
+  <ul>
+    <li><strong>Supabase</strong> i EU (Stockholm): database og innlogging. Tilgangsregler i databasen sørger for at man bare ser sin egen flokk.</li>
+    <li><strong>Apple</strong>: Logg inn med Apple, push-varsler og værdata. Apple Weather får bare posisjonen ved turstart, uten å vite hvem du er.</li>
+    <li><strong>På telefonen</strong>: turer som tas opp eller venter på nett.</li>
+  </ul>
+
+  <h2>Slik sletter du kontoen</h2>
+  <p>I appen: trykk på <strong>avataren din oppe til høyre på Hjem</strong>, og velg <strong>Slett kontoen min</strong>. Navnet ditt, e-posten og innloggingen slettes med en gang.</p>
+  <p>Turene du har gått, blir stående i flokken som «Tidligere medlem», så statistikken til de andre ikke endres. Er du den siste i flokken som bruker appen, slettes hele flokken med alle turer og turnus.</p>
+
+  <h2>Dine rettigheter</h2>
+  <p>Du kan se og endre navnet, fargen og turene dine i appen. Du kan når som helst be om en kopi av dataene dine, eller at de slettes, ved å sende en e-post til adressen under. Du kan også klage til Datatilsynet.</p>
+
+  <h2>Barn</h2>
+  <p>Pawtur er for deg som er 13 år eller eldre. Yngre barn er med som en profil uten telefon, som en forelder legger inn og styrer. Barnet har da ingen konto, innlogging eller e-post i appen. En forelder starter turen på sin telefon og velger barnet som den som går, så turen og poengene går til barnet. Ruta vises bare for flokken.</p>
+
+  <h2>Kontakt</h2>
+  <p>Eirik Lie, <a href="mailto:eiriklie@hotmail.com">eiriklie@hotmail.com</a></p>
+  <p>Spørsmål om appen? Se <a href="../support/">hjelpesiden</a>.</p>
+
+  <hr id="english">
+
+  <h1>Privacy in Pawtur</h1>
+  <p class="lang">Last updated 27 September 2026</p>
+
+  <p>Pawtur is an app for families who share the dog walks. It only stores what your pack needs to see who walked the dog, when and where.</p>
+
+  <div class="promise">
+    <p><strong>In short:</strong> No ads, no tracking and no third-party analytics. Your data is never sold. Only people in your own pack see the walks and names, and the app does not take photos.</p>
+  </div>
+
+  <h2>What the app stores</h2>
+  <div class="card">
+    <div class="row"><strong>Name and color</strong><span>Shown to your pack on walks and in the schedule.</span></div>
+    <div class="row"><strong>Email from Sign in with Apple</strong><span>Needed to sign in, and often a private relay address. Never shown to the pack.</span></div>
+    <div class="row"><strong>GPS route of each walk</strong><span>Shown on a map to your pack, and used to check that the walk left home. Location is only used while you are on a walk.</span></div>
+    <div class="row"><strong>The pack's home location</strong><span>Used to check that walks get at least 200 meters from home. Rounded to about 10 meters.</span></div>
+    <div class="row"><strong>Weather at the start of a walk</strong><span>Temperature and conditions, from Apple Weather.</span></div>
+    <div class="row"><strong>Walks, schedule and approvals</strong><span>What your pack records in the app.</span></div>
+    <div class="row"><strong>Push token</strong><span>A code from Apple that lets the app send reminders. Deleted when you sign out.</span></div>
+  </div>
+
+  <h2>Where the data is kept</h2>
+  <ul>
+    <li><strong>Supabase</strong> in the EU (Stockholm): database and sign-in. Access rules in the database make sure you only see your own pack.</li>
+    <li><strong>Apple</strong>: Sign in with Apple, push notifications and weather. Apple Weather only gets the location at the start of a walk, without knowing who you are.</li>
+    <li><strong>On the phone</strong>: walks being recorded or waiting for a connection.</li>
+  </ul>
+
+  <h2>Deleting your account</h2>
+  <p>In the app: tap <strong>your avatar at the top right of Home</strong>, and choose <strong>Delete my account</strong>. Your name, email and sign-in are deleted right away.</p>
+  <p>Walks you took stay in the pack as "Former member", so the others' statistics do not change. If you are the last person in the pack using the app, the whole pack is deleted with all walks and the schedule.</p>
+
+  <h2>Your rights</h2>
+  <p>You can see and change your name, color and walks in the app. You can ask for a copy of your data, or for it to be deleted, at any time by emailing the address below. You can also complain to the Norwegian Data Protection Authority (Datatilsynet).</p>
+
+  <h2>Children</h2>
+  <p>Pawtur is for people aged 13 and over. Younger children take part as a profile without a phone, added and managed by a parent. The child then has no account, sign-in or email in the app. A parent starts the walk on their phone and picks the child as the walker, so the walk and the points go to the child. The route is only shown to the pack.</p>
+
+  <h2>Contact</h2>
+  <p>Eirik Lie, <a href="mailto:eiriklie@hotmail.com">eiriklie@hotmail.com</a></p>
+  <p>Questions about the app? See the <a href="../support/#english">help page</a>.</p>
+
+  <footer>Pawtur · Laget for Kaos og flokken hans</footer>
+</main>
+</body>
+</html>
