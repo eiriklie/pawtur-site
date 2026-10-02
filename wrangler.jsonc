@@ -1,0 +1,9 @@
+// The pages are static files served by Cloudflare Workers, with the
+// domain pawtur.app. Files in .assetsignore are not published.
+{
+  "name": "pawtur-site",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "."
+  }
+}
