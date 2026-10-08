@@ -40,6 +40,7 @@
   }
   main { max-width: 720px; margin: 0 auto; padding: 40px 16px 64px; }
   header { display: flex; align-items: center; gap: 16px; margin-bottom: 8px; }
+  header .home { display: contents; }
   header img { width: 64px; height: 64px; border-radius: 15px; flex: none; }
   h1 { font-size: 30px; line-height: 1.15; margin: 0; }
   .lang { color: var(--muted); font-size: 15px; margin: 0 0 32px; }
@@ -111,7 +112,7 @@
 <body>
 <main>
   <header>
-    <img src="../icon.jpg" alt="">
+    <a href="../" class="home"><img src="../icon.jpg" alt="Pawtur"></a>
     <h1 data-nb="Du er invitert til en flokk" data-en="You're invited to a pack">Du er invitert til en flokk</h1>
   </header>
 
@@ -137,7 +138,7 @@
     <p data-nb="Denne lenken mangler koden. Be den som inviterte deg om å dele invitasjonen på nytt." data-en="This link is missing the code. Ask the person who invited you to share the invite again.">Denne lenken mangler koden. Be den som inviterte deg om å dele invitasjonen på nytt.</p>
   </div>
 
-  <footer><a href="../support/" data-nb="Hjelp" data-en="Help">Hjelp</a> · <a href="../personvern/" data-nb="Personvern" data-en="Privacy">Personvern</a></footer>
+  <footer><a href="../">Pawtur</a> · <a href="../support/" data-nb="Hjelp" data-en="Help">Hjelp</a> · <a href="../personvern/" data-nb="Personvern" data-en="Privacy">Personvern</a></footer>
 </main>
 <script>
   // Where to get the app. The TestFlight public link while testing, the App
