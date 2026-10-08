@@ -107,6 +107,18 @@
   [hidden] { display: none !important; }
   hr { border: 0; border-top: 1px solid var(--line); margin: 56px 0 8px; }
   footer { color: var(--muted); font-size: 14px; margin-top: 40px; }
+  .lang-switch {
+    margin-left: auto;
+    font: 600 15px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--ink);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 10px 14px;
+    min-height: 44px;
+    cursor: pointer;
+    flex: none;
+  }
 </style>
 </head>
 <body>
@@ -114,6 +126,7 @@
   <header>
     <a href="../" class="home"><img src="../icon.jpg" alt="Pawtur"></a>
     <h1 data-nb="Du er invitert til en flokk" data-en="You're invited to a pack">Du er invitert til en flokk</h1>
+    <button class="lang-switch" type="button" id="lang-switch" data-nb="English" data-en="Norsk">English</button>
   </header>
 
   <div id="invite">
@@ -145,10 +158,23 @@
   // Store later. Empty shows a note to ask for the link instead.
   const DOWNLOAD_URL = "https://testflight.apple.com/join/QMGK72g6";
 
-  const lang = /^(nb|no|nn)\b/i.test(navigator.language || "") ? "nb" : "en";
-  document.documentElement.lang = lang;
-  document.querySelectorAll("[data-" + lang + "]").forEach(el => { el.textContent = el.dataset[lang]; });
-  if (lang === "en") document.title = "Invite – Pawtur";
+  // The choice made on any of the pages, then the browser's languages.
+  let saved = null;
+  try { saved = localStorage.getItem("lang"); } catch (e) {}
+  const langs = navigator.languages || [navigator.language || ""];
+  let lang = saved || (langs.some(l => /^(nb|no|nn)\b/i.test(l)) ? "nb" : "en");
+  function setLang(next) {
+    lang = next;
+    document.documentElement.lang = lang;
+    document.querySelectorAll("[data-" + lang + "]").forEach(el => { el.textContent = el.dataset[lang]; });
+    document.title = lang === "nb" ? "Invitasjon – Pawtur" : "Invite – Pawtur";
+  }
+  setLang(lang);
+  document.getElementById("lang-switch").addEventListener("click", () => {
+    const next = lang === "nb" ? "en" : "nb";
+    try { localStorage.setItem("lang", next); } catch (e) {}
+    setLang(next);
+  });
 
   // The code is in the fragment (#KAOS-1234), so it never reaches the server.
   const raw = decodeURIComponent(location.hash.slice(1)).trim().toUpperCase();

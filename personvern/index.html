@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Personvern – Pawtur</title>
 <meta name="description" content="Hva Pawtur lagrer, hvorfor, og hvordan du sletter kontoen din.">
+<script>
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem("lang"); } catch (e) {}
+    var langs = navigator.languages || [navigator.language || ""];
+    var norwegian = langs.some(function (l) { return /^(nb|no|nn)\b/i.test(l); });
+    document.documentElement.lang = location.hash === "#english" ? "en" : (saved || (norwegian ? "nb" : "en"));
+  })();
+</script>
 <link rel="icon" href="../icon.jpg">
 <style>
   :root {
@@ -67,15 +76,31 @@
   .promise p { margin: 0; }
   hr { border: 0; border-top: 1px solid var(--line); margin: 56px 0 8px; }
   footer { color: var(--muted); font-size: 14px; margin-top: 40px; }
+  /* One language at a time, with a button to switch. */
+  html[lang="nb"] [lang="en"], html:not([lang="nb"]) [lang="nb"] { display: none !important; }
+  .lang-switch {
+    margin-left: auto;
+    font: 600 15px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--ink);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 10px 14px;
+    min-height: 44px;
+    cursor: pointer;
+    flex: none;
+  }
 </style>
 </head>
 <body>
 <main>
+  <div lang="nb">
   <header>
     <a href="../" class="home"><img src="../icon.jpg" alt="Pawtur"></a>
     <h1>Personvern i Pawtur</h1>
+    <button class="lang-switch" type="button" data-switch><span lang="nb">English</span><span lang="en">Norsk</span></button>
   </header>
-  <p class="lang">Sist oppdatert 27. september 2026 · <a href="#english">English below</a></p>
+  <p class="lang">Sist oppdatert 27. september 2026</p>
 
   <p>Pawtur er en app for familier som deler på hundeturene. Den lagrer bare det som trengs for at flokken din skal se hvem som går tur, når og hvor.</p>
 
@@ -114,10 +139,14 @@
   <h2>Kontakt</h2>
   <p>Eirik Lie, <a href="mailto:support@pawtur.app">support@pawtur.app</a></p>
   <p>Spørsmål om appen? Se <a href="../support/">hjelpesiden</a>.</p>
+  </div>
 
-  <hr id="english">
-
-  <h1>Privacy in Pawtur</h1>
+  <div lang="en" id="english">
+  <header>
+    <a href="../" class="home"><img src="../icon.jpg" alt="Pawtur"></a>
+    <h1>Privacy in Pawtur</h1>
+    <button class="lang-switch" type="button" data-switch><span lang="nb">English</span><span lang="en">Norsk</span></button>
+  </header>
   <p class="lang">Last updated 27 September 2026</p>
 
   <p>Pawtur is an app for families who share the dog walks. It only stores what your pack needs to see who walked the dog, when and where.</p>
@@ -157,8 +186,26 @@
   <h2>Contact</h2>
   <p>Eirik Lie, <a href="mailto:support@pawtur.app">support@pawtur.app</a></p>
   <p>Questions about the app? See the <a href="../support/#english">help page</a>.</p>
+  </div>
 
-  <footer><a href="../">Pawtur</a> · Laget for Kaos og flokken hans · <a href="mailto:support@pawtur.app">support@pawtur.app</a></footer>
+  <footer><a href="../">Pawtur</a> · <span lang="nb">Laget for Kaos og flokken hans</span><span lang="en">Made for Kaos and his pack</span> · <a href="mailto:support@pawtur.app">support@pawtur.app</a></footer>
 </main>
+<script>
+  var titles = {nb: "Personvern – Pawtur", en: "Privacy – Pawtur"};
+  function setLang(lang) {
+    document.documentElement.lang = lang;
+    document.title = titles[lang];
+  }
+  setLang(document.documentElement.lang === "nb" ? "nb" : "en");
+  document.querySelectorAll("[data-switch]").forEach(function (button) {
+    button.addEventListener("click", function () {
+      var lang = document.documentElement.lang === "nb" ? "en" : "nb";
+      try { localStorage.setItem("lang", lang); } catch (e) {}
+      setLang(lang);
+      if (location.hash === "#english") history.replaceState(null, "", location.pathname);
+      window.scrollTo(0, 0);
+    });
+  });
+</script>
 </body>
 </html>
