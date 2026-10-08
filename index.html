@@ -182,15 +182,23 @@
   .feature .art .sticker { position: absolute; width: 120px; left: 4%; bottom: 6%; filter: drop-shadow(0 6px 12px rgba(31, 42, 38, .18)); }
   .feature.flip .art .sticker { left: auto; right: 4%; }
 
-  /* Screenshots from the app, in a simple phone frame */
+  /* Screenshots from the app, without a drawn phone: the screen itself with
+     the iPhone's rounded corners, a thin edge and a soft shadow. */
   .phone {
     width: min(270px, 72vw);
-    padding: 9px;
-    border-radius: 46px;
-    background: #1F2A26;
-    box-shadow: 0 2px 4px rgba(31, 42, 38, .12), 0 24px 48px rgba(31, 42, 38, .22);
+    border-radius: 13.5% / 6.2%;
+    overflow: hidden;
+    background: var(--bg);
+    box-shadow:
+      0 0 0 1px rgba(31, 42, 38, .10),
+      0 2px 6px rgba(31, 42, 38, .08),
+      0 24px 56px rgba(31, 42, 38, .20);
   }
-  .feature .art .phone img, .phone img { width: 100%; border-radius: 37px; }
+  @media (prefers-color-scheme: dark) {
+    .phone { box-shadow: 0 0 0 1px rgba(255, 255, 255, .14), 0 24px 56px rgba(0, 0, 0, .45); }
+  }
+  .phone picture { display: block; }
+  .feature .art .phone img, .phone img { width: 100%; display: block; }
   ul.ticks { list-style: none; padding: 0; margin: 18px 0 0; }
   ul.ticks li { position: relative; padding-left: 30px; margin-bottom: 10px; }
   ul.ticks li::before {
@@ -356,7 +364,7 @@
   <section>
     <div class="wrap">
       <div class="feature">
-        <div class="art"><div class="phone"><img lang="nb" src="img/screen-nb-walk.avif" alt="Turen pågår: kart med ruta, tid, distanse og vær" width="570" height="1240" loading="lazy"><img lang="en" src="img/screen-en-walk.avif" alt="A walk in progress: map with the route, time, distance and weather" width="570" height="1240" loading="lazy"></div><img class="sticker" src="img/map.avif" alt=""></div>
+        <div class="art"><div class="phone"><picture lang="nb"><source media="(prefers-color-scheme: dark)" srcset="img/screen-nb-walk-dark.avif"><img src="img/screen-nb-walk.avif" alt="Turen pågår: kart med ruta, tid, distanse og vær" width="570" height="1240" loading="lazy"></picture><picture lang="en"><source media="(prefers-color-scheme: dark)" srcset="img/screen-en-walk-dark.avif"><img src="img/screen-en-walk.avif" alt="A walk in progress: map with the route, time, distance and weather" width="570" height="1240" loading="lazy"></picture></div><img class="sticker" src="img/map.avif" alt=""></div>
         <div>
           <span class="eyebrow"><span lang="nb">På tur</span><span lang="en">On the walk</span></span>
           <h2><span lang="nb">Trykk Start, og gå</span><span lang="en">Tap Start, and go</span></h2>
@@ -374,7 +382,7 @@
       </div>
 
       <div class="feature flip">
-        <div class="art"><div class="phone"><img lang="nb" src="img/screen-nb-story.avif" alt="En tur med kart, poeng og hva hunden sier om den" width="570" height="1240" loading="lazy"><img lang="en" src="img/screen-en-story.avif" alt="A walk with the map, points and what the dog says about it" width="570" height="1240" loading="lazy"></div><img class="sticker" src="img/feed.avif" alt=""></div>
+        <div class="art"><div class="phone"><picture lang="nb"><source media="(prefers-color-scheme: dark)" srcset="img/screen-nb-story-dark.avif"><img src="img/screen-nb-story.avif" alt="En tur med kart, poeng og hva hunden sier om den" width="570" height="1240" loading="lazy"></picture><picture lang="en"><source media="(prefers-color-scheme: dark)" srcset="img/screen-en-story-dark.avif"><img src="img/screen-en-story.avif" alt="A walk with the map, points and what the dog says about it" width="570" height="1240" loading="lazy"></picture></div><img class="sticker" src="img/feed.avif" alt=""></div>
         <div>
           <span class="eyebrow"><span lang="nb">Etter turen</span><span lang="en">After the walk</span></span>
           <h2><span lang="nb">Hunden forteller</span><span lang="en">The dog tells the story</span></h2>
@@ -391,7 +399,7 @@
       </div>
 
       <div class="feature">
-        <div class="art"><div class="phone"><img lang="nb" src="img/screen-nb-pack.avif" alt="Flokken med hunden, turnusen og medlemmene" width="570" height="1240" loading="lazy"><img lang="en" src="img/screen-en-pack.avif" alt="The pack with the dog, the schedule and the members" width="570" height="1240" loading="lazy"></div><img class="sticker" src="img/pack.avif" alt=""></div>
+        <div class="art"><div class="phone"><picture lang="nb"><source media="(prefers-color-scheme: dark)" srcset="img/screen-nb-pack-dark.avif"><img src="img/screen-nb-pack.avif" alt="Flokken med hunden, turnusen og medlemmene" width="570" height="1240" loading="lazy"></picture><picture lang="en"><source media="(prefers-color-scheme: dark)" srcset="img/screen-en-pack-dark.avif"><img src="img/screen-en-pack.avif" alt="The pack with the dog, the schedule and the members" width="570" height="1240" loading="lazy"></picture></div><img class="sticker" src="img/pack.avif" alt=""></div>
         <div>
           <span class="eyebrow"><span lang="nb">Hele flokken</span><span lang="en">The whole pack</span></span>
           <h2><span lang="nb">Laget for hele familien</span><span lang="en">Made for the whole family</span></h2>
@@ -418,7 +426,7 @@
         <span lang="nb">Poeng for hver tur, og ekstra for regn, tidlige morgener og turer tatt for andre. Hvem blir ukas hundelufter?</span>
         <span lang="en">Points for every walk, and extra for rain, early mornings and walks taken for others. Who will be dog walker of the week?</span>
       </p>
-      <div class="board-phone"><div class="phone"><img lang="nb" src="img/screen-nb-board.avif" alt="LeashBoard med ukas hundelufter på pallen" width="570" height="1240" loading="lazy"><img lang="en" src="img/screen-en-board.avif" alt="LeashBoard with the dog walker of the week on the podium" width="570" height="1240" loading="lazy"></div></div>
+      <div class="board-phone"><div class="phone"><picture lang="nb"><source media="(prefers-color-scheme: dark)" srcset="img/screen-nb-board-dark.avif"><img src="img/screen-nb-board.avif" alt="LeashBoard med ukas hundelufter på pallen" width="570" height="1240" loading="lazy"></picture><picture lang="en"><source media="(prefers-color-scheme: dark)" srcset="img/screen-en-board-dark.avif"><img src="img/screen-en-board.avif" alt="LeashBoard with the dog walker of the week on the podium" width="570" height="1240" loading="lazy"></picture></div></div>
       <div class="badges">
         <img src="img/badge-first-walk.avif" alt="" title="">
         <img src="img/badge-rain-hero.avif" alt="">
