@@ -35,6 +35,7 @@
       far: "#6F9A84", mid: "#5E8C72", pine: "#2F5D50", trunk: "#7A5A40", bush: "#3E6B57", bush2: "#4A7A62", stone: "#9C9D98",
       meadow: ["#6F9C7E", "#5E8C70", "#3F6B55"], path: "#E9DFC9", pebbles: ["#CDBE9F", "#B9B7AF"],
       flower: "#E8833A", flower2: "#F7F1E6", flowerMiddle: "#F2C661",
+      letter: ["#F1E6D0", "#D8C5A3", "#BFA883"], mound: "#6A9679",
       leash: "#2F5D50", stitch: "#244A3F", clip: "#E8833A", dogShade: null,
     },
     dark: {
@@ -43,6 +44,7 @@
       far: "#3E5E50", mid: "#3A5A4B", pine: "#24453A", trunk: "#4F3D2E", bush: "#2C4A3E", bush2: "#33544A", stone: "#5F625E",
       meadow: ["#355446", "#2C473B", "#1A2922"], path: "#5E584B", pebbles: ["#4C473D", "#55554F"],
       flower: "#C9763A", flower2: "#9AA59F", flowerMiddle: "#B8964A",
+      letter: ["#B8AD95", "#978B73", "#7B705C"], mound: "#355446",
       leash: "#4E8F7A", stitch: "#3B6E5E", clip: "#F0975A", dogShade: "brightness(0.82) saturate(0.9)",
     },
   };
@@ -146,6 +148,74 @@
     clay(g, function (g) { g.beginPath(); g.ellipse(x, y - h / 2, w / 2, h / 2, 0, 0, Math.PI * 2); }, color, [x - w / 2, y - h, w, h], { shadow: 0.25, blur: h * 0.5, drop: h * 0.15, light: 0.35, dark: 0.25 });
   }
 
+  // A clay flower standing at (x, y): stem, one leaf and five round petals.
+  function flower(g, x, y, color, side) {
+    var hx = x + side * 6, hy = y - 48;
+    g.strokeStyle = C.bush; g.lineWidth = 7; g.lineCap = "round";
+    g.beginPath(); g.moveTo(x, y); g.quadraticCurveTo(x - side * 4, y - 26, hx, hy); g.stroke();
+    g.save();
+    g.translate(x - side * 2, y - 18); g.rotate(side * 0.9);
+    clay(g, function (g) { g.beginPath(); g.ellipse(0, -11, 7, 13, 0, 0, Math.PI * 2); }, C.bush2, [-7, -24, 14, 26], { shadow: 0.15, blur: 6, drop: 2 });
+    g.restore();
+    for (var k = 0; k < 5; k++) {
+      var a = k / 5 * Math.PI * 2 - Math.PI / 2;
+      (function (px, py) {
+        clay(g, function (g) { g.beginPath(); g.arc(px, py, 16, 0, Math.PI * 2); }, color, [px - 16, py - 16, 32, 32], { shadow: 0.2, blur: 10, drop: 3 });
+      })(hx + Math.cos(a) * 19, hy + Math.sin(a) * 19);
+    }
+    clay(g, function (g) { g.beginPath(); g.arc(hx, hy, 12, 0, Math.PI * 2); }, C.flowerMiddle, [hx - 12, hy - 12, 24, 24], { shadow: 0.15, blur: 4, drop: 1 });
+  }
+
+  // The PAWTUR letters: thick clay strokes in a box one unit high, so they look
+  // the same everywhere without a font. Each letter is a little different in
+  // size, tilt, depth and spacing, and stands on its own mound.
+  var GLYPHS = {
+    P: { w: 0.62, d: function (g) { g.moveTo(0, 1); g.lineTo(0, 0); g.lineTo(0.3, 0); g.arc(0.3, 0.27, 0.27, -Math.PI / 2, Math.PI / 2); g.lineTo(0, 0.54); } },
+    A: { w: 0.78, d: function (g) { g.moveTo(0, 1); g.lineTo(0.39, 0); g.lineTo(0.78, 1); g.moveTo(0.17, 0.66); g.lineTo(0.61, 0.66); } },
+    W: { w: 1.0, d: function (g) { g.moveTo(0, 0); g.lineTo(0.22, 1); g.lineTo(0.5, 0.4); g.lineTo(0.78, 1); g.lineTo(1.0, 0); } },
+    T: { w: 0.72, d: function (g) { g.moveTo(0, 0); g.lineTo(0.72, 0); g.moveTo(0.36, 0); g.lineTo(0.36, 1); } },
+    U: { w: 0.66, d: function (g) { g.moveTo(0, 0); g.lineTo(0, 0.66); g.arc(0.33, 0.66, 0.33, Math.PI, 0, true); g.lineTo(0.66, 0); } },
+    R: { w: 0.66, d: function (g) { g.moveTo(0, 1); g.lineTo(0, 0); g.lineTo(0.3, 0); g.arc(0.3, 0.27, 0.27, -Math.PI / 2, Math.PI / 2); g.lineTo(0, 0.54); g.moveTo(0.28, 0.54); g.lineTo(0.66, 1); } },
+  };
+  var LETTER_STROKE = 0.27, LETTER_GAP = 0.44;
+
+  function clayWord(g, word, x, baseY, h, r) {
+    var pad = LETTER_STROKE / 2;
+    word.split("").forEach(function (ch) {
+      var glyph = GLYPHS[ch];
+      var lh = h * (0.9 + r() * 0.2);
+      var tilt = (r() - 0.5) * 0.24;
+      var sink = r() * 0.12 * lh;
+      var cx = x + (glyph.w / 2) * lh;
+      g.save();
+      g.translate(cx, baseY + sink);
+      g.rotate(tilt);
+      g.scale(lh, lh);
+      g.translate(-glyph.w / 2, -1 - pad);
+      g.lineCap = "round"; g.lineJoin = "round";
+      function stroke(color, width, dx, dy) {
+        g.save(); g.translate(dx || 0, dy || 0);
+        g.strokeStyle = color; g.lineWidth = width;
+        g.beginPath(); glyph.d(g); g.stroke();
+        g.restore();
+      }
+      // Depth toward the bottom right, then the face, then the light from the top left.
+      for (var i = 12; i >= 1; i--) stroke(i === 12 ? C.letter[2] : C.letter[1], LETTER_STROKE, i * 0.006, i * 0.006);
+      stroke(C.letter[0], LETTER_STROKE);
+      stroke("rgba(255,255,255,0.14)", LETTER_STROKE * 0.5, -0.025, -0.03);
+      g.restore();
+      // The mound the letter stands in, with a bush or a stone at the side.
+      var mw = (glyph.w / 2 + 0.3 + r() * 0.15) * lh, mh = (0.1 + r() * 0.06) * lh;
+      var mx = cx + (r() - 0.5) * 0.2 * lh;
+      clay(g, function (g) { g.beginPath(); g.ellipse(mx, baseY + 30, mw, mh + 30, 0, Math.PI, 0); g.closePath(); },
+        C.mound, [mx - mw, baseY - mh, mw * 2, mh + 30], { shadow: 0.18, blur: 18, drop: 6, light: 0.2, dark: 0.15 });
+      var side = r() < 0.5 ? -1 : 1;
+      if (r() < 0.75) bush(g, mx + side * mw * (0.55 + r() * 0.3), baseY - mh * 0.3, 50 + r() * 35, r() < 0.5 ? C.bush : C.bush2, r);
+      if (r() < 0.4) stone(g, mx - side * mw * (0.4 + r() * 0.3), baseY - mh * 0.2, 50 + r() * 40, 28 + r() * 14, C.stone);
+      x += (glyph.w + LETTER_GAP + (r() - 0.4) * 0.16) * lh;
+    });
+  }
+
   function mounds(g, list, color, o) {
     list.forEach(function (m) {
       clay(g, function (g) { g.beginPath(); g.ellipse(m.x, m.y, m.rx, m.ry, 0, Math.PI, 0); g.lineTo(m.x + m.rx, m.y + 600); g.lineTo(m.x - m.rx, m.y + 600); g.closePath(); },
@@ -198,6 +268,11 @@
       mounds(g, list, mix(C.mid, haze, 0.35), { shadow: 0.12, light: 0.2, dark: 0.12 });
     }));
     layers[1].factor = 0.48;
+    // The PAWTUR sign, once every 9600, between the hills and the big pines.
+    layers.push(makeTile(9600, 700, 1300, 0.8 * K, function (g) {
+      clayWord(g, "PAWTUR", 3000, 1215, 300, rng(61));
+    }));
+    layers[2].factor = 0.6;
     // Near: a few big pines with a bush, far apart.
     layers.push(makeTile(5760, 420, 1300, 0, function (g) {
       var r = rng(37);
@@ -208,7 +283,7 @@
         bush(g, gx - 140, 1250, 70 + r() * 30, C.bush, r);
       }
     }));
-    layers[2].factor = 0.72;
+    layers[layers.length - 1].factor = 0.72;
     // Ground: the meadow and the sand path.
     // It goes a little below the strip, so the last row of pixels is covered.
     var groundBottom = SCENE_BOTTOM + 20;
@@ -245,19 +320,11 @@
       for (i = 0; i < 4; i++) bush(g, r() * P, 1300 + r() * 6, 34 + r() * 26, r() < 0.5 ? C.bush : C.bush2, r, 0.2);
       for (i = 0; i < 2; i++) stone(g, r() * P, 1302, 60 + r() * 50, 34 + r() * 16, C.stone);
       for (i = 0; i < 8; i++) {
-        var x = r() * P, y = r() < 0.5 ? 1270 + r() * 20 : 1450 + r() * 30;
-        for (var k = 0; k < 5; k++) {
-          var a = k / 5 * Math.PI * 2, px = x + Math.cos(a) * 10, py = y + Math.sin(a) * 10;
-          (function (px, py, color) {
-            clay(g, function (g) { g.beginPath(); g.arc(px, py, 8, 0, Math.PI * 2); }, color, [px - 8, py - 8, 16, 16], { shadow: 0.2, blur: 6, drop: 2 });
-          })(px, py, r() < 0.8 ? C.flower : C.flower2);
-        }
-        (function (x, y) {
-          clay(g, function (g) { g.beginPath(); g.arc(x, y, 7, 0, Math.PI * 2); }, C.flowerMiddle, [x - 7, y - 7, 14, 14], { shadow: 0 });
-        })(x, y);
+        var x = r() * P, y = r() < 0.5 ? 1275 + r() * 15 : 1470 + r() * 20;
+        flower(g, x, y, r() < 0.8 ? C.flower : C.flower2, r() < 0.5 ? 1 : -1);
       }
     }));
-    layers[3].factor = 1;
+    layers[layers.length - 1].factor = 1;
   }
 
   // Clay clouds that hang in the sky and bob a little. They repeat every 3840.
