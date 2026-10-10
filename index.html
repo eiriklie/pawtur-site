@@ -35,6 +35,8 @@
     --orange: #E8833A;
     --on-accent: #FFFFFF;
     --line: #E2D7BF;
+    --meadow: #3F6B55;
+    --on-meadow: #F7F1E6;
     --shadow: 0 1px 2px rgba(31, 42, 38, .06), 0 8px 24px rgba(31, 42, 38, .08);
     --rounded: ui-rounded, "SF Pro Rounded", "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   }
@@ -50,6 +52,8 @@
       --orange: #F0975A;
       --on-accent: #121A16;
       --line: #2C3833;
+      --meadow: #1A2922;
+      --on-meadow: #D9E2DC;
       --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
     }
   }
@@ -255,10 +259,15 @@
   .promises h3 { font-size: 19px; }
 
   /* Closing */
-  .closing { text-align: center; }
+  .closing { text-align: center; padding-bottom: 0; }
   .closing img { width: 260px; margin: 0 auto 16px; }
 
-  footer { border-top: 1px solid var(--line); padding: 28px 0 48px; color: var(--muted); font-size: 15px; }
+  /* The dog walks along the bottom of the page (walk.js). The meadow ends in
+     --meadow, which the footer continues. */
+  .walk-strip { position: relative; height: clamp(200px, 25vw, 360px); margin-bottom: -1px; background: linear-gradient(transparent 85%, var(--meadow) 85%); }
+  .walk-strip canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  footer { background: var(--meadow); padding: 28px 0 48px; color: var(--on-meadow); font-size: 15px; }
+  footer a { color: var(--on-meadow); }
   footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 20px; justify-content: space-between; }
   footer nav { display: flex; flex-wrap: wrap; gap: 8px 18px; }
 
@@ -503,6 +512,8 @@
       </p>
     </div>
   </section>
+
+  <div class="walk-strip" aria-hidden="true"><canvas></canvas></div>
 </main>
 
 <footer>
@@ -547,5 +558,6 @@
     apply(lang);
   });
 </script>
+<script src="walk.js" defer></script>
 </body>
 </html>
