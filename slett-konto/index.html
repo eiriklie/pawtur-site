@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Slett kontoen – Pawtur</title>
+<meta name="description" content="Slik sletter du kontoen din i Pawtur, på iPhone, Android eller uten appen, og hva som slettes.">
+<script>
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem("lang"); } catch (e) {}
+    var langs = navigator.languages || [navigator.language || ""];
+    var norwegian = langs.some(function (l) { return /^(nb|no|nn)\b/i.test(l); });
+    document.documentElement.lang = location.hash === "#english" ? "en" : (saved || (norwegian ? "nb" : "en"));
+  })();
+</script>
+<link rel="icon" href="../icon.jpg">
+<style>
+  :root {
+    --bg: #F7F1E6;
+    --card: #FFFCF6;
+    --sand: #E9DFC9;
+    --ink: #1F2A26;
+    --muted: #55615C;
+    --green: #2F5D50;
+    --orange: #E8833A;
+    --line: #E2D7BF;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121A16;
+      --card: #1C2622;
+      --sand: #232E29;
+      --ink: #EEE7DA;
+      --muted: #A9B3AE;
+      --green: #7FB8A3;
+      --orange: #F0975A;
+      --line: #2C3833;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 17px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  main { max-width: 720px; margin: 0 auto; padding: 40px 16px 64px; }
+  header { display: flex; align-items: center; gap: 16px; margin-bottom: 8px; }
+  header .home { display: contents; }
+  header img { width: 64px; height: 64px; border-radius: 15px; flex: none; }
+  h1 { font-size: 30px; line-height: 1.15; margin: 0; }
+  .lang { color: var(--muted); font-size: 15px; margin: 0 0 32px; }
+  .lang a { color: var(--green); }
+  h2 { font-size: 21px; margin: 36px 0 10px; }
+  p, li { margin: 0 0 12px; }
+  a { color: var(--green); }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 4px 18px;
+    margin: 12px 0 20px;
+  }
+  .row { padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .row:last-child { border-bottom: 0; }
+  .row strong { display: block; }
+  .row span { color: var(--muted); font-size: 15px; }
+  .promise {
+    background: var(--sand);
+    border-radius: 18px;
+    padding: 16px 18px;
+    margin: 20px 0;
+  }
+  .promise p { margin: 0; }
+  hr { border: 0; border-top: 1px solid var(--line); margin: 56px 0 8px; }
+  footer { color: var(--muted); font-size: 14px; margin-top: 40px; }
+  /* One language at a time, with a button to switch. */
+  html[lang="nb"] [lang="en"], html:not([lang="nb"]) [lang="nb"] { display: none !important; }
+  .lang-switch {
+    margin-left: auto;
+    font: 600 15px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--ink);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 10px 14px;
+    min-height: 44px;
+    cursor: pointer;
+    flex: none;
+  }
+</style>
+</head>
+<body>
+<main>
+  <div lang="nb">
+  <header>
+    <a href="../" class="home"><img src="../icon.jpg" alt="Pawtur"></a>
+    <h1>Slett kontoen din i Pawtur</h1>
+    <button class="lang-switch" type="button" data-switch><span lang="nb">English</span><span lang="en">Norsk</span></button>
+  </header>
+  <p class="lang">Pawtur av Eirik Lie, for iPhone og Android</p>
+
+  <h2>I appen</h2>
+  <p>Trykk på <strong>avataren din oppe til høyre på Hjem</strong>, velg <strong>Slett kontoen min</strong> nederst, og bekreft. Kontoen slettes med en gang. Det virker likt på iPhone og Android.</p>
+  <p>Logget du inn med Apple, må kontoen slettes fra iPhone-appen, fordi Apple må bekrefte at det er deg. Har du ikke en iPhone lenger, kan du sende en e-post, se under.</p>
+
+  <h2>Uten appen</h2>
+  <p>Send en e-post til <a href="mailto:support@pawtur.app?subject=Slett%20kontoen%20min%20i%20Pawtur">support@pawtur.app</a> med emnet «Slett kontoen min», fra e-postadressen du logget inn med, eller skriv hvilken adresse og hvilken flokk det gjelder. Vi sletter kontoen innen 30 dager og svarer når det er gjort.</p>
+
+  <h2>Hva som slettes</h2>
+  <div class="card">
+    <div class="row"><strong>Slettes med en gang</strong><span>Innloggingen, e-postadressen, navnet ditt i flokken og varseltokenet til telefonen din.</span></div>
+    <div class="row"><strong>Blir stående i flokken</strong><span>Turene du har gått, som «Tidligere medlem» uten navnet ditt, så statistikken til de andre ikke endres.</span></div>
+    <div class="row"><strong>Hele flokken slettes</strong><span>Er du den siste i flokken som bruker appen, slettes flokken med alle turer, hunder og turnus.</span></div>
+    <div class="row"><strong>Sikkerhetskopier</strong><span>Databasen kopieres kryptert hver natt, og hver kopi slettes etter 30 dager. Etter det finnes ingenting igjen.</span></div>
+  </div>
+
+  <h2>Bare noen av dataene?</h2>
+  <p>Du kan slette enkelte turer i appen, under <strong>Turer</strong>. Vil du ha slettet noe annet uten å slette kontoen, send en e-post til adressen over.</p>
+
+  <p>Les mer i <a href="../personvern/">personvernerklæringen</a>.</p>
+  </div>
+
+  <div lang="en" id="english">
+  <header>
+    <a href="../" class="home"><img src="../icon.jpg" alt="Pawtur"></a>
+    <h1>Delete your Pawtur account</h1>
+    <button class="lang-switch" type="button" data-switch><span lang="nb">English</span><span lang="en">Norsk</span></button>
+  </header>
+  <p class="lang">Pawtur by Eirik Lie, for iPhone and Android</p>
+
+  <h2>In the app</h2>
+  <p>Tap <strong>your avatar at the top right of Home</strong>, choose <strong>Delete my account</strong> at the bottom, and confirm. The account is deleted right away. It works the same on iPhone and Android.</p>
+  <p>If you signed in with Apple, the account must be deleted from the iPhone app, since Apple has to confirm that it is you. If you no longer have an iPhone, you can send an email, see below.</p>
+
+  <h2>Without the app</h2>
+  <p>Email <a href="mailto:support@pawtur.app?subject=Delete%20my%20Pawtur%20account">support@pawtur.app</a> with the subject "Delete my account", from the email address you signed in with, or tell us which address and which pack it is. We delete the account within 30 days and reply when it is done.</p>
+
+  <h2>What is deleted</h2>
+  <div class="card">
+    <div class="row"><strong>Deleted right away</strong><span>Your sign-in, email address, your name in the pack and your phone's push token.</span></div>
+    <div class="row"><strong>Kept in the pack</strong><span>The walks you took, as "Former member" without your name, so the others' statistics do not change.</span></div>
+    <div class="row"><strong>The whole pack is deleted</strong><span>If you are the last person in the pack using the app, the pack is deleted with all walks, dogs and the schedule.</span></div>
+    <div class="row"><strong>Backups</strong><span>The database is copied, encrypted, every night, and each copy is deleted after 30 days. After that nothing is left.</span></div>
+  </div>
+
+  <h2>Only some of your data?</h2>
+  <p>You can delete single walks in the app, under <strong>Walks</strong>. To have something else deleted without deleting the account, email the address above.</p>
+
+  <p>Read more in the <a href="../personvern/#english">privacy policy</a>.</p>
+  </div>
+
+  <footer><a href="../">Pawtur</a> · <span lang="nb">Laget for Kaos og flokken hans</span><span lang="en">Made for Kaos and his pack</span> · <a href="mailto:support@pawtur.app">support@pawtur.app</a></footer>
+</main>
+<script>
+  var titles = {nb: "Slett kontoen – Pawtur", en: "Delete your account – Pawtur"};
+  function setLang(lang) {
+    document.documentElement.lang = lang;
+    document.title = titles[lang];
+  }
+  setLang(document.documentElement.lang === "nb" ? "nb" : "en");
+  document.querySelectorAll("[data-switch]").forEach(function (button) {
+    button.addEventListener("click", function () {
+      var lang = document.documentElement.lang === "nb" ? "en" : "nb";
+      try { localStorage.setItem("lang", lang); } catch (e) {}
+      setLang(lang);
+      if (location.hash === "#english") history.replaceState(null, "", location.pathname);
+      window.scrollTo(0, 0);
+    });
+  });
+</script>
+</body>
+</html>
