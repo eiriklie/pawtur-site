@@ -86,6 +86,8 @@
   summary::after { content: "+"; float: right; color: var(--muted); font-weight: 400; }
   details[open] summary::after { content: "–"; }
   details p:last-child { padding-bottom: 6px; }
+  details ul { margin: 0 0 12px; padding-left: 22px; }
+  details li { margin-bottom: 6px; }
   hr { border: 0; border-top: 1px solid var(--line); margin: 56px 0 8px; }
   footer { color: var(--muted); font-size: 14px; margin-top: 40px; }
   /* One language at a time, with a button to switch. */
@@ -177,7 +179,15 @@
   </details>
   <details>
     <summary>Hvordan regnes poengene?</summary>
-    <p>Hver tur gir 10 poeng, pluss ekstra for lange turer, regn eller snø, kulde, varme eller sterk vind, tidlig morgen eller sen kveld, og for å ta en tur for en annen. Poengene og antall turer vises på <strong>LeashBoard</strong>.</p>
+    <p>Hver godkjente tur gir 10 poeng, og noen turer gir mer:</p>
+    <ul>
+      <li><strong>Lange turer:</strong> +1 for hvert femte minutt over 10 minutter, høyst +16 (en tur på halvannen time eller mer).</li>
+      <li><strong>Regn, snø eller sludd:</strong> +5.</li>
+      <li><strong>Kulde, varme eller vind:</strong> +3 når det er –5 °C eller kaldere, 25 °C eller varmere, eller vind på 10 m/s eller mer.</li>
+      <li><strong>Tidlig eller sent:</strong> +5 for turer som starter før kl. 07 eller fra kl. 22.</li>
+      <li><strong>Hjelp:</strong> +5 når du tar en tur som var en annens, eller går en tur som ikke ble gått.</li>
+    </ul>
+    <p>Går dere sammen, får alle på turen poengene. Været kommer fra Apple Weather når turen starter. Turen viser hvordan poengene ble regnet ut, og <strong>LeashBoard</strong> viser poengene for uka, måneden, året og totalt. Månedens hundelufter er den med flest poeng.</p>
   </details>
   <details>
     <summary>Hvordan fjerner jeg noen fra flokken?</summary>
@@ -267,7 +277,15 @@
   </details>
   <details>
     <summary>How are points counted?</summary>
-    <p>Every walk gives 10 points, plus extra for long walks, rain or snow, cold, heat or strong wind, early mornings or late evenings, and for taking a walk for someone else. Points and walks are shown on <strong>LeashBoard</strong>.</p>
+    <p>Every approved walk gives 10 points, and some walks give more:</p>
+    <ul>
+      <li><strong>Long walks:</strong> +1 for every five minutes over 10 minutes, at most +16 (a walk of an hour and a half or more).</li>
+      <li><strong>Rain, snow or sleet:</strong> +5.</li>
+      <li><strong>Cold, heat or wind:</strong> +3 at –5 °C or colder, 25 °C or warmer, or wind of 10 m/s or more.</li>
+      <li><strong>Early or late:</strong> +5 for walks that start before 07:00 or from 22:00.</li>
+      <li><strong>Helping out:</strong> +5 when you take a walk that was someone else's, or a walk that was missed.</li>
+    </ul>
+    <p>When you walk together, everyone on the walk gets the points. The weather comes from Apple Weather when the walk starts. The walk shows how its points were counted, and <strong>LeashBoard</strong> shows the points for the week, month, year and all time. Dog walker of the month is the one with the most points.</p>
   </details>
   <details>
     <summary>How do I remove someone from the pack?</summary>
