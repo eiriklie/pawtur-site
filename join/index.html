@@ -143,8 +143,12 @@
       <li data-nb="Trykk «Jeg har en invitasjon», og så «Lim inn»." data-en="Tap “I have an invite”, then “Paste”.">Trykk «Jeg har en invitasjon», og så «Lim inn».</li>
     </ol>
     <a class="button primary" id="download" href="#" data-nb="Last ned Pawtur" data-en="Get Pawtur">Last ned Pawtur</a>
-    <p class="note" id="android" hidden data-nb="Pawtur finnes bare til iPhone ennå. Android-appen kommer snart." data-en="Pawtur is only on iPhone so far. The Android app is coming soon.">Pawtur finnes bare til iPhone ennå. Android-appen kommer snart.</p>
-    <a class="button secondary" id="android-test" hidden href="#" data-nb="Bli med og test Android-appen" data-en="Help us test the Android app">Bli med og test Android-appen</a>
+    <ol id="android-steps" hidden>
+      <li data-nb="Android-appen er i test i Google Play. Bli tester og installer Pawtur." data-en="The Android app is being tested on Google Play. Become a tester and install Pawtur.">Android-appen er i test i Google Play. Bli tester og installer Pawtur.</li>
+      <li data-nb="Åpne appen og logg inn med Google." data-en="Open the app and sign in with Google.">Åpne appen og logg inn med Google.</li>
+      <li data-nb="Trykk «Jeg har en invitasjon», og så «Lim inn»." data-en="Tap “I have an invite”, then “Paste”.">Trykk «Jeg har en invitasjon», og så «Lim inn».</li>
+    </ol>
+    <a class="button primary" id="android-test" hidden href="../android/" data-nb="Bli tester på Android" data-en="Become a tester on Android">Bli tester på Android</a>
     <p class="note" id="testing" hidden data-nb="Appen er i testing ennå. Be den som inviterte deg om lenken til TestFlight." data-en="The app is still being tested. Ask the person who invited you for the TestFlight link.">Appen er i testing ennå. Be den som inviterte deg om lenken til TestFlight.</p>
     <a class="button secondary" id="open" href="#" data-nb="Jeg har appen – åpne invitasjonen" data-en="I have the app – open the invite">Jeg har appen – åpne invitasjonen</a>
     <p class="note" data-nb="Koden virker for én person i 7 dager." data-en="The code works for one person for 7 days.">Koden virker for én person i 7 dager.</p>
@@ -171,18 +175,9 @@
     document.documentElement.lang = lang;
     document.querySelectorAll("[data-" + lang + "]").forEach(el => { el.textContent = el.dataset[lang]; });
     document.title = lang === "nb" ? "Invitasjon – Pawtur" : "Invite – Pawtur";
-    document.getElementById("android-test").href = testerMail();
+    document.getElementById("android-test").href = lang === "nb" ? "../android/" : "../android/#english";
   }
 
-  // Android testers write to us with their Google account, which the closed
-  // test in Google Play needs.
-  function testerMail() {
-    const subject = lang === "nb" ? "Jeg vil teste Pawtur på Android" : "I want to test Pawtur on Android";
-    const body = lang === "nb"
-      ? "Hei!\n\nJeg vil gjerne teste Pawtur på Android. E-postadressen til Google-kontoen min er:\n\n"
-      : "Hi!\n\nI would like to test Pawtur on Android. The email address of my Google account is:\n\n";
-    return "mailto:support@pawtur.app?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
-  }
   setLang(lang);
   document.getElementById("lang-switch").addEventListener("click", () => {
     const next = lang === "nb" ? "en" : "nb";
@@ -215,10 +210,10 @@
     const download = document.getElementById("download");
     if (/Android/i.test(navigator.userAgent)) {
       // The App Store does not work on Android, and the steps are for iPhone.
+      // Android is in the closed test on Google Play, through the tester page.
       download.hidden = true;
-      document.getElementById("steps-title").hidden = true;
       document.getElementById("steps").hidden = true;
-      document.getElementById("android").hidden = false;
+      document.getElementById("android-steps").hidden = false;
       document.getElementById("android-test").hidden = false;
     } else if (DOWNLOAD_URL) {
       download.href = DOWNLOAD_URL;
