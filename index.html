@@ -155,6 +155,19 @@
   .float.two { bottom: 8%; left: 0; animation-delay: -2.5s; width: 80px; }
   @keyframes bob { 50% { transform: translateY(-10px) rotate(-4deg); } }
 
+  /* Counters, filled in from public_stats() in the database. Hidden until
+     the numbers have arrived, so the page never shows empty boxes. */
+  /* Right after the features, which already end with section padding. */
+  .stats { padding: 0 0 72px; }
+  .stats .lead { font-size: 17px; margin-bottom: 18px; }
+  .stats dl { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 0; }
+  /* The number is shown above its label, but read after it. */
+  .stats dl > div { display: flex; flex-direction: column-reverse; background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 18px 12px; }
+  .stats dt { color: var(--muted); font-size: 15px; }
+  .stats dd { margin: 0 0 2px; font: 700 clamp(28px, 4vw, 36px)/1.1 var(--rounded); color: var(--green); font-variant-numeric: tabular-nums; }
+  /* Screen readers get the final number, not every step of the count. */
+  .stats dd .final { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
   /* Steps */
   .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
   .card {
@@ -269,6 +282,8 @@
     .hero-art { max-width: 380px; margin: 0 auto; }
     .feature.flip .art { order: 0; }
     .steps, .promises { grid-template-columns: 1fr; }
+    .stats { padding-bottom: 56px; }
+    .stats dl { grid-template-columns: repeat(2, 1fr); }
     .board { margin: 0 12px; padding: 48px 20px; border-radius: 28px; }
     .badges { gap: 10px; }
     .badges img { width: 70px; }
@@ -420,6 +435,21 @@
     </div>
   </section>
 
+  <section class="stats" id="stats" hidden>
+    <div class="wrap center">
+      <p class="lead">
+        <span lang="nb">Så langt med Pawtur</span>
+        <span lang="en">So far with Pawtur</span>
+      </p>
+      <dl>
+        <div><dt><span lang="nb">turer</span><span lang="en">walks</span></dt><dd data-stat="walks"><span class="count" aria-hidden="true"></span><span class="final"></span></dd></div>
+        <div><dt><span lang="nb">kilometer</span><span lang="en">kilometres</span></dt><dd data-stat="kilometres"><span class="count" aria-hidden="true"></span><span class="final"></span></dd></div>
+        <div><dt><span lang="nb">familier</span><span lang="en">families</span></dt><dd data-stat="families"><span class="count" aria-hidden="true"></span><span class="final"></span></dd></div>
+        <div><dt><span lang="nb">hunder</span><span lang="en">dogs</span></dt><dd data-stat="dogs"><span class="count" aria-hidden="true"></span><span class="final"></span></dd></div>
+      </dl>
+    </div>
+  </section>
+
   <section class="board">
     <div class="wrap center">
       <span class="eyebrow">LeashBoard</span>
@@ -539,7 +569,51 @@
     document.querySelectorAll("a[data-page]").forEach(function (a) {
       a.setAttribute("href", a.dataset.page + (lang === "en" ? "#english" : ""));
     });
+    showStats();
   }
+  // Totals for everyone, rounded down in the database, so they get a "+".
+  var stats = null;
+  // 0 until the counters have been on screen, then counts up to 1.
+  var progress = 0;
+  function showStats() {
+    if (!stats) return;
+    var format = new Intl.NumberFormat(document.documentElement.lang === "nb" ? "nb-NO" : "en-GB");
+    var shown = 0;
+    document.querySelectorAll("[data-stat]").forEach(function (dd) {
+      var value = stats[dd.dataset.stat] || 0;
+      dd.querySelector(".count").textContent = format.format(Math.round(value * progress)) + "+";
+      dd.querySelector(".final").textContent = format.format(value) + "+";
+      dd.parentElement.hidden = value === 0;
+      if (value > 0) shown++;
+    });
+    document.getElementById("stats").hidden = shown === 0;
+  }
+  // Counts up once, slowing down at the end, when the counters come into view.
+  function countUp() {
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce || !("IntersectionObserver" in window)) { progress = 1; showStats(); return; }
+    var observer = new IntersectionObserver(function (entries) {
+      if (!entries[0].isIntersecting) return;
+      observer.disconnect();
+      var start = null;
+      requestAnimationFrame(function step(time) {
+        if (start === null) start = time;
+        var t = Math.min((time - start) / 1600, 1);
+        progress = 1 - Math.pow(1 - t, 3);
+        showStats();
+        if (t < 1) requestAnimationFrame(step);
+      });
+    }, { threshold: 0.6 });
+    observer.observe(document.querySelector("#stats dl"));
+  }
+  fetch("https://sjwlpxgszkhkxaiyeskb.supabase.co/rest/v1/rpc/public_stats", {
+    method: "POST",
+    headers: { apikey: "sb_publishable_QCXqsq_itKKcIRl__BQtAw_opDUtITc", "Content-Type": "application/json" },
+    body: "{}"
+  })
+    .then(function (response) { return response.ok ? response.json() : null; })
+    .then(function (json) { stats = json; showStats(); if (stats) countUp(); })
+    .catch(function () {});
   apply(document.documentElement.lang === "nb" ? "nb" : "en");
   document.querySelectorAll(".badges img").forEach(function (badge) {
     badge.addEventListener("pointerenter", function () { badge.classList.add("spin"); });
