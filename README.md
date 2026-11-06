@@ -1,6 +1,6 @@
 # Pawtur
 
-Nettsidene til Pawtur, en iPhone-app som fordeler familiens hundeturer.
+Nettsidene til Pawtur, en app for iPhone og Android som fordeler familiens hundeturer.
 
 - [Hjelp og vanlige spørsmål](https://pawtur.app/support/) · [English](https://pawtur.app/support/#english)
 - [Personvernerklæring](https://pawtur.app/personvern/) · [English](https://pawtur.app/personvern/#english)
