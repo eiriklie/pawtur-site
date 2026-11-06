@@ -122,8 +122,8 @@
   <h2>Hvor dataene ligger</h2>
   <ul>
     <li><strong>Supabase</strong> i EU (Stockholm): database og innlogging. Tilgangsregler i databasen sørger for at man bare ser sin egen flokk.</li>
-    <li><strong>Apple, på iPhone</strong>: Logg inn med Apple, push-varsler og kart (Apple Kart).</li>
-    <li><strong>Google, på Android</strong>: Logg inn med Google, push-varsler (Firebase Cloud Messaging) og kart (Google Maps). Kartet lastes fra Google når du ser på en tur.</li>
+    <li><strong>Apple, på iPhone</strong>: Logg inn med Apple, push-varsler og kart (Apple Kart). Søker du etter en adresse når du setter hjemmet, går søket til Apple. Bare posisjonen du velger, lagres.</li>
+    <li><strong>Google, på Android</strong>: Logg inn med Google, push-varsler (Firebase Cloud Messaging) og kart (Google Maps). Kartet lastes fra Google når du ser på en tur. Søker du etter en adresse når du setter hjemmet, går søket til Google. Bare posisjonen du velger, lagres.</li>
     <li><strong>Apple Weather, på begge</strong>: får bare posisjonen ved turstart, uten å vite hvem du er. På Android går forespørselen via serveren vår.</li>
     <li><strong>Sikkerhetskopi</strong>: databasen kopieres kryptert hver natt og lagres hos GitHub. Hver kopi slettes etter 30 dager.</li>
     <li><strong>På telefonen</strong>: turer som tas opp eller venter på nett, og hvor du har satt fra deg bæsjeposen under turen. Det stedet sendes aldri til oss. På Android lagres også en GPS-logg for de tre siste turene. Den sendes bare hvis du selv deler den fra Min profil.</li>
@@ -178,8 +178,8 @@
   <h2>Where the data is kept</h2>
   <ul>
     <li><strong>Supabase</strong> in the EU (Stockholm): database and sign-in. Access rules in the database make sure you only see your own pack.</li>
-    <li><strong>Apple, on iPhone</strong>: Sign in with Apple, push notifications and maps (Apple Maps).</li>
-    <li><strong>Google, on Android</strong>: Sign in with Google, push notifications (Firebase Cloud Messaging) and maps (Google Maps). The map is loaded from Google when you look at a walk.</li>
+    <li><strong>Apple, on iPhone</strong>: Sign in with Apple, push notifications and maps (Apple Maps). When you search for an address to set the home, the search goes to Apple. Only the position you pick is saved.</li>
+    <li><strong>Google, on Android</strong>: Sign in with Google, push notifications (Firebase Cloud Messaging) and maps (Google Maps). The map is loaded from Google when you look at a walk. When you search for an address to set the home, the search goes to Google. Only the position you pick is saved.</li>
     <li><strong>Apple Weather, on both</strong>: only gets the location at the start of a walk, without knowing who you are. On Android the request goes through our server.</li>
     <li><strong>Backup</strong>: the database is copied, encrypted, every night and kept at GitHub. Each copy is deleted after 30 days.</li>
     <li><strong>On the phone</strong>: walks being recorded or waiting for a connection, and where you put down the poop bag during the walk. That place is never sent to us. On Android, a GPS log of the last three walks is kept too. It is only sent if you share it yourself from My profile.</li>
